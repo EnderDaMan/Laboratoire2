@@ -332,7 +332,7 @@ export default class MathsController extends Controller {
         let count = 0;
         let num = 2;
         while (count < n) {
-            if (this.isPrime(num)) {
+            if (this.calculerPremier(num)) {
                 count++;
             }
             num++;
