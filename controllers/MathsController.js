@@ -253,7 +253,7 @@ export default class MathsController extends Controller {
                 n,
                 error: `Paramètre manquant: n`
             }); 
-        else if (isNan(n) || n < 0) 
+        else if (isNan(n) || !Number.isInteger(Number(n)) || n < 0) 
             this.HttpContext.response.JSON({
                 op: '!',
                 n,
