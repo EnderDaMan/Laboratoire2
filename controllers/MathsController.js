@@ -53,7 +53,23 @@ export default class MathsController extends Controller {
     Addition(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (isNaN(x) || isNaN(y)) {
+        if (!x || !y) {
+            if (!x) 
+                paramsInvalides.push('x');
+                
+
+            if (!y) 
+                paramsInvalides.push('y');
+                
+            
+            this.HttpContext.response.JSON({
+                    op: '+',
+                    x,
+                    y,
+                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
+                });
+        } 
+        else if(isNaN(x) || isNaN(y)) {
             if (isNaN(x))
                 paramsInvalides.push('x');
 
@@ -67,22 +83,6 @@ export default class MathsController extends Controller {
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (!x || !y) {
-            if (!x) 
-                paramsInvalides.push('x');
-                
-
-            if (!y) 
-                paramsInvalides.push('y');
-                
-            
-            this.HttpContext.response.JSON({
-                    op: '+',
-                    x,
-                    y,
-                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
-                });
-        } 
         else {
             const result = parseFloat(x) + parseFloat(y);
             this.HttpContext.response.JSON({ op: '+', x, y, value: result });
@@ -92,35 +92,36 @@ export default class MathsController extends Controller {
     Soustraction(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (isNaN(x) || isNaN(y)) {
-            if (isNaN(x))
-                paramsInvalides.push('x');
-
-            if (isNaN(y))
-                paramsInvalides.push('y');
-            
-            this.HttpContext.response.JSON({
-                op: '-',
-                x,
-                y,
-                error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
-            });
-        } 
-        else if (!x || !y) {
-
+        if (!x || !y) {
             if (!x) 
                 paramsInvalides.push('x');
+                
 
             if (!y) 
                 paramsInvalides.push('y');
                 
+            
             this.HttpContext.response.JSON({
                     op: '+',
                     x,
                     y,
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
                 });
-        }
+        } 
+        else if(isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
+                paramsInvalides.push('x');
+
+            if (isNaN(y))
+                paramsInvalides.push('y');
+
+            this.HttpContext.response.JSON({
+                op: '+',
+                x,
+                y,
+                error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
+            });
+        } 
         else {
             const result = parseFloat(x) - parseFloat(y);
             this.HttpContext.response.JSON({ op: '-', x, y, value: result });
@@ -130,35 +131,36 @@ export default class MathsController extends Controller {
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (isNaN(x) || isNaN(y)) {
+        if (!x || !y) {
+            if (!x) 
+                paramsInvalides.push('x');
+                
+
+            if (!y) 
+                paramsInvalides.push('y');
+                
+            
+            this.HttpContext.response.JSON({
+                    op: '+',
+                    x,
+                    y,
+                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
+                });
+        } 
+        else if(isNaN(x) || isNaN(y)) {
             if (isNaN(x))
                 paramsInvalides.push('x');
 
             if (isNaN(y))
                 paramsInvalides.push('y');
-            
+
             this.HttpContext.response.JSON({
-                op: '*',
+                op: '+',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (!x || !y) {
-            
-            if (!x) 
-                paramsInvalides.push('x');
-            
-            if (!y) 
-                paramsInvalides.push('y');
-                
-            this.HttpContext.response.JSON({
-                op: '*',
-                x,
-                y,
-                error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
-            });
-        }
         else {
             const result = parseFloat(x) * parseFloat(y);
             this.HttpContext.response.JSON({ op: '*', x, y, value: result });
@@ -168,35 +170,36 @@ export default class MathsController extends Controller {
     Division(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (isNaN(x) || isNaN(y)) {
+        if (!x || !y) {
+            if (!x) 
+                paramsInvalides.push('x');
+                
+
+            if (!y) 
+                paramsInvalides.push('y');
+                
+            
+            this.HttpContext.response.JSON({
+                    op: '+',
+                    x,
+                    y,
+                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
+                });
+        } 
+        else if(isNaN(x) || isNaN(y)) {
             if (isNaN(x))
                 paramsInvalides.push('x');
 
             if (isNaN(y))
                 paramsInvalides.push('y');
-            
+
             this.HttpContext.response.JSON({
-                op: '/',
+                op: '+',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (!x || !y) {
-
-            if (!x) 
-                paramsInvalides.push('x');
-            
-            if (!y) 
-                paramsInvalides.push('y');
-            
-            this.HttpContext.response.JSON({
-                op: '/',
-                x,
-                y,
-                error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
-            });
-        }
         else {
             const result = parseFloat(x) / parseFloat(y);
             this.HttpContext.response.JSON({ op: '/', x, y, value: result });
@@ -206,35 +209,36 @@ export default class MathsController extends Controller {
     Modulo(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (isNaN(x) || isNaN(y)) {
+        if (!x || !y) {
+            if (!x) 
+                paramsInvalides.push('x');
+                
+
+            if (!y) 
+                paramsInvalides.push('y');
+                
+            
+            this.HttpContext.response.JSON({
+                    op: '+',
+                    x,
+                    y,
+                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
+                });
+        } 
+        else if(isNaN(x) || isNaN(y)) {
             if (isNaN(x))
                 paramsInvalides.push('x');
 
             if (isNaN(y))
                 paramsInvalides.push('y');
-            
+
             this.HttpContext.response.JSON({
-                op: '%',
+                op: '+',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (!x || !y) {
-
-            if (!x) 
-                paramsInvalides.push('x');
-            
-            if (!y) 
-                paramsInvalides.push('y');
-            
-            this.HttpContext.response.JSON({
-                    op: '%',
-                    x,
-                    y,
-                    error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
-                });
-        }
         else {
             const result = parseInt(x) % parseInt(y);
             this.HttpContext.response.JSON({ op: '%', x, y, value: result });
