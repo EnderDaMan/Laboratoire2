@@ -320,7 +320,7 @@ export default class MathsController extends Controller {
 
     calculerPremier(n) {
         //Source: https://stackoverflow.com/questions/40200089/check-number-prime-in-javascript
-        for(let i = 2, s = Math.sqrt(num); i <= s; i++){
+        for(let i = 2, s = Math.sqrt(n); i <= s; i++){
             if (n % i === 0) 
                 return false;
         }    
