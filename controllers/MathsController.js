@@ -53,11 +53,11 @@ export default class MathsController extends Controller {
     Addition(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (Number.isNaN(x) || Number.isNaN(y)) {
-            if (Number.isNaN(x))
+        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
+            if (!verifierSiNombre(x))
                 paramsInvalides.push('x');
 
-            if (Number.isNaN(y))
+            if (!verifierSiNombre(y))
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
@@ -92,12 +92,12 @@ export default class MathsController extends Controller {
     Soustraction(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (Number.isNaN(x) || Number.isNaN(y)) {
+        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
             
-            if (Number.isNaN(x)) 
+            if (!verifierSiNombre(x)) 
                 paramsInvalides.push('x');
             
-            if (Number.isNaN(y)) 
+            if (!verifierSiNombre(y)) 
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -131,12 +131,12 @@ export default class MathsController extends Controller {
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (Number.isNaN(x) || Number.isNaN(y)) {
+        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
             
-            if (Number.isNaN(x)) 
+            if (!verifierSiNombre(x)) 
                 paramsInvalides.push('x');
             
-            if (Number.isNaN(y)) 
+            if (!verifierSiNombre(y)) 
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -170,12 +170,12 @@ export default class MathsController extends Controller {
     Division(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (Number.isNaN(x) || Number.isNaN(y)) {
+        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
             
-            if (Number.isNaN(x)) {
+            if (!verifierSiNombre(x)) {
                 paramsInvalides.push('x');
             }
-            if (Number.isNaN(y)) {
+            if (!verifierSiNombre(y)) {
                 paramsInvalides.push('y');
             }
             this.HttpContext.response.JSON({
@@ -209,12 +209,12 @@ export default class MathsController extends Controller {
     Modulo(httpContextParams) {
         const { x, y } = httpContextParams;
         let invalidParameters = [];
-        if (Number.isNaN(x) || Number.isNaN(y) || !Number.isInteger(Number(x)) || !Number.isInteger(Number(y)) || y === 0) {
+        if (!verifierSiNombre(x) || !verifierSiNombre(y) || y === 0) {
             
-            if (Number.isNaN(x) || !Number.isInteger(Number(x))) 
+            if (!verifierSiNombre(x)) 
                 invalidParameters.push('x');
             
-            if (Number.isNaN(y) || !Number.isInteger(Number(y)) || y === 0) 
+            if (!verifierSiNombre(y) || y === 0) 
                 invalidParameters.push('y');
             
             this.HttpContext.response.JSON({
@@ -247,7 +247,7 @@ export default class MathsController extends Controller {
 
     Factoriel(httpContextParams) {
         const { n } = httpContextParams;
-        if (Number.isNaN(n) || !Number.isInteger(Number(n)) || n < 0) 
+        if (!verifierSiNombre(n) || n < 0) 
             this.HttpContext.response.JSON({
                 op: '!',
                 n,
@@ -268,7 +268,7 @@ export default class MathsController extends Controller {
 
     Premier(httpContextParams) {
         const { n } = httpContextParams;
-        if (Number.isNaN(n) || !Number.isInteger(Number(n)) || n <= 1)
+        if (!verifierSiNombre(n) || n <= 1)
             this.HttpContext.response.JSON({
                 op: 'p',
                 n,
@@ -288,7 +288,7 @@ export default class MathsController extends Controller {
 
     EniemPremier(httpContextParams) {
         const { n } = httpContextParams;
-        if (Number.isNaN(n) || !Number.isInteger(Number(n)) || n <= 0)
+        if (!verifierSiNombre(n) || n <= 0)
             this.HttpContext.response.JSON({
                 op: 'np',
                 n,
@@ -338,5 +338,10 @@ export default class MathsController extends Controller {
             num++;
         }
         return num - 1;
+    }
+
+    verifierSiNombre(valeur){
+        //Source: https://www.shecodes.io/athena/92427-how-to-check-if-a-value-is-a-number-in-javascript#:~:text=You%20can%20use%20the%20typeof,to%20the%20string%20'number'%20.&text=You%20can%20then%20call%20this,value%20you%20want%20to%20check.
+        return typeof valeur === 'number';
     }
 }
