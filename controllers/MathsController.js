@@ -247,19 +247,18 @@ export default class MathsController extends Controller {
 
     Factoriel(httpContextParams) {
         const { n } = httpContextParams;
-        if (!verifierSiNombre(n) || n < 0) 
-            this.HttpContext.response.JSON({
-                op: '!',
-                n,
-                error: 'Paramètre invalide: n doit être un nombre positif.'
-            });
-        
-        else if (!n) 
+        if (!n) 
             this.HttpContext.response.JSON({
             op: '!',
             n,
             error: `Paramètre manquant: n`
-            });   
+            }); 
+        else if (isNan(n) || n < 0) 
+            this.HttpContext.response.JSON({
+                op: '!',
+                n,
+                error: 'Paramètre invalide: n doit être un nombre positif.'
+        });  
         else {
             const result = this.calculerFactoriel(parseInt(n));
             this.HttpContext.response.JSON({ op: '!', n, value: result });
@@ -268,18 +267,18 @@ export default class MathsController extends Controller {
 
     Premier(httpContextParams) {
         const { n } = httpContextParams;
-        if (isNaN(n) || n <= 1)
-            this.HttpContext.response.JSON({
-                op: 'p',
-                n,
-                error: 'Paramètre invalide: n doit être un nombre supérieur à 1.'
-            });
-        else if (!n) 
+        if (!n) 
           this.HttpContext.response.JSON({
                 op: '!',
                 n,
                 error: `Paramètre manquant: n`
             });
+        else if (isNaN(n) || n <= 1)
+            this.HttpContext.response.JSON({
+                op: 'p',
+                n,
+                error: 'Paramètre invalide: n doit être un nombre supérieur à 1.'
+        });
         else {
             const result = this.calculerPremier(parseInt(n));
             this.HttpContext.response.JSON({ op: 'p', n, value: result });
@@ -288,17 +287,17 @@ export default class MathsController extends Controller {
 
     EniemPremier(httpContextParams) {
         const { n } = httpContextParams;
-        if (isNaN(n) || n <= 0)
-            this.HttpContext.response.JSON({
-                op: 'np',
-                n,
-                error: 'Paramètre invalide: n doit être un nombre positif.'
-            });
-        else if (!n)
+        if (!n)
           this.HttpContext.response.JSON({
                 op: '!',
                 n,
                 error: `Paramètre manquant: n`
+            });
+        else if (isNaN(n) || n <= 0)
+            this.HttpContext.response.JSON({
+                op: 'np',
+                n,
+                error: 'Paramètre invalide: n doit être un nombre positif.'
             });
         else {
             const result = this.calculerEniemPremier(parseInt(n));
