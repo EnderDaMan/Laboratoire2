@@ -53,12 +53,11 @@ export default class MathsController extends Controller {
     Addition(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        console.log(typeof x !== 'number');
-        if (typeof x !== 'number' || typeof y !== 'number') {
-            if (typeof x !== 'number')
+        if (isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
                 paramsInvalides.push('x');
 
-            if (typeof y !== 'number')
+            if (isNaN(y))
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
