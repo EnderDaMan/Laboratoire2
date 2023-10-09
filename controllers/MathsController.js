@@ -248,19 +248,18 @@ export default class MathsController extends Controller {
 
     Factoriel(httpContextParams) {
         const { n } = httpContextParams;
-        if (isNaN(n) || n < 0) 
-            this.HttpContext.response.JSON({
-                op: '!',
-                n,
-                error: 'Paramètre invalide: n doit être un nombre positif.'
-            });
-        
-        else if (!n) 
+        if (!n) 
             this.HttpContext.response.JSON({
             op: '!',
             n,
             error: `Paramètre manquant: n`
             });   
+        else if (isNaN(n) || n < 0) 
+        this.HttpContext.response.JSON({
+            op: '!',
+            n,
+            error: 'Paramètre invalide: n doit être un nombre positif.'
+        });
         else {
             const result = this.calculerFactoriel(parseInt(n));
             this.HttpContext.response.JSON({ op: '!', n, value: result });
