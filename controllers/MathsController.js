@@ -102,7 +102,7 @@ export default class MathsController extends Controller {
                 
             
             this.HttpContext.response.JSON({
-                    op: '+',
+                    op: '-',
                     x,
                     y,
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
@@ -116,7 +116,7 @@ export default class MathsController extends Controller {
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
-                op: '+',
+                op: '-',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
@@ -141,7 +141,7 @@ export default class MathsController extends Controller {
                 
             
             this.HttpContext.response.JSON({
-                    op: '+',
+                    op: '*',
                     x,
                     y,
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
@@ -155,7 +155,7 @@ export default class MathsController extends Controller {
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
-                op: '+',
+                op: '*',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
@@ -180,7 +180,7 @@ export default class MathsController extends Controller {
                 
             
             this.HttpContext.response.JSON({
-                    op: '+',
+                    op: '/',
                     x,
                     y,
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
@@ -194,7 +194,7 @@ export default class MathsController extends Controller {
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
-                op: '+',
+                op: '/',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
@@ -219,7 +219,7 @@ export default class MathsController extends Controller {
                 
             
             this.HttpContext.response.JSON({
-                    op: '+',
+                    op: '%',
                     x,
                     y,
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
@@ -233,7 +233,7 @@ export default class MathsController extends Controller {
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
-                op: '+',
+                op: '%',
                 x,
                 y,
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
@@ -249,9 +249,9 @@ export default class MathsController extends Controller {
         const { n } = httpContextParams;
         if (!n) 
             this.HttpContext.response.JSON({
-            op: '!',
-            n,
-            error: `Paramètre manquant: n`
+                op: '!',
+                n,
+                error: `Paramètre manquant: n`
             }); 
         else if (isNan(n) || n < 0) 
             this.HttpContext.response.JSON({
@@ -269,7 +269,7 @@ export default class MathsController extends Controller {
         const { n } = httpContextParams;
         if (!n) 
           this.HttpContext.response.JSON({
-                op: '!',
+                op: 'p',
                 n,
                 error: `Paramètre manquant: n`
             });
@@ -289,7 +289,7 @@ export default class MathsController extends Controller {
         const { n } = httpContextParams;
         if (!n)
           this.HttpContext.response.JSON({
-                op: '!',
+                op: 'np',
                 n,
                 error: `Paramètre manquant: n`
             });
