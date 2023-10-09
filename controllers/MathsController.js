@@ -130,9 +130,9 @@ export default class MathsController extends Controller {
 
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
-        let paramsInvalides = [];
+        
         if (Number.isNaN(x) || Number.isNaN(y)) {
-            
+            let paramsInvalides = [];
             if (Number.isNaN(x)) 
                 paramsInvalides.push('x');
             
@@ -147,7 +147,7 @@ export default class MathsController extends Controller {
             });
         } 
         else if (!x || !y) {
-            
+            let paramsInvalides = [];
             if (!x) 
                 paramsInvalides.push('x');
             
