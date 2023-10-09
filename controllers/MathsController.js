@@ -225,7 +225,8 @@ export default class MathsController extends Controller {
                     error: `Paramètre(s) manquant(s): ${paramsInvalides.join(', ')}. Veuillez entrer des valeures pour x ET y.`
                 });
         } 
-        else if(isNaN(x) || isNaN(y)) {
+        else 
+        if(isNaN(x) || isNaN(y)) {
             if (isNaN(x))
                 paramsInvalides.push('x');
 
@@ -247,18 +248,19 @@ export default class MathsController extends Controller {
 
     Factoriel(httpContextParams) {
         const { n } = httpContextParams;
-        if (!n) 
-            this.HttpContext.response.JSON({
-                op: '!',
-                n,
-                error: `Paramètre manquant: n`
-            }); 
-        else if (isNan(n) || !Number.isInteger(Number(n)) || n < 0) 
+        if (isNaN(n) || n < 0) 
             this.HttpContext.response.JSON({
                 op: '!',
                 n,
                 error: 'Paramètre invalide: n doit être un nombre positif.'
-        });  
+            });
+        
+        else if (!n) 
+            this.HttpContext.response.JSON({
+            op: '!',
+            n,
+            error: `Paramètre manquant: n`
+            });   
         else {
             const result = this.calculerFactoriel(parseInt(n));
             this.HttpContext.response.JSON({ op: '!', n, value: result });
