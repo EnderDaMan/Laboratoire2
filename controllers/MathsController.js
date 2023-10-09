@@ -53,11 +53,11 @@ export default class MathsController extends Controller {
     Addition(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
-            if (!verifierSiNombre(x))
+        if (typeof x !== 'number' || typeof y !== 'number') {
+            if (typeof x !== 'number')
                 paramsInvalides.push('x');
 
-            if (!verifierSiNombre(y))
+            if (typeof y !== 'number')
                 paramsInvalides.push('y');
 
             this.HttpContext.response.JSON({
@@ -69,11 +69,11 @@ export default class MathsController extends Controller {
         } 
         else if (!x || !y) {
             if (!x) 
-                invalidParameters.push('x');
+                paramsInvalides.push('x');
                 
 
             if (!y) 
-                invalidParameters.push('y');
+                paramsInvalides.push('y');
                 
             
             this.HttpContext.response.JSON({
@@ -92,12 +92,11 @@ export default class MathsController extends Controller {
     Soustraction(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
-            
-            if (!verifierSiNombre(x)) 
+        if (typeof x !== 'number' || typeof y !== 'number') {
+            if (typeof x !== 'number')
                 paramsInvalides.push('x');
-            
-            if (!verifierSiNombre(y)) 
+
+            if (typeof y !== 'number')
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -131,12 +130,11 @@ export default class MathsController extends Controller {
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
-            
-            if (!verifierSiNombre(x)) 
+        if (typeof x !== 'number' || typeof y !== 'number') {
+            if (typeof x !== 'number')
                 paramsInvalides.push('x');
-            
-            if (!verifierSiNombre(y)) 
+
+            if (typeof y !== 'number')
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -170,14 +168,13 @@ export default class MathsController extends Controller {
     Division(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (!verifierSiNombre(x) || !verifierSiNombre(y)) {
-            
-            if (!verifierSiNombre(x)) {
+        if (typeof x !== 'number' || typeof y !== 'number') {
+            if (typeof x !== 'number')
                 paramsInvalides.push('x');
-            }
-            if (!verifierSiNombre(y)) {
+
+            if (typeof y !== 'number')
                 paramsInvalides.push('y');
-            }
+            
             this.HttpContext.response.JSON({
                 op: '/',
                 x,
@@ -187,12 +184,12 @@ export default class MathsController extends Controller {
         } 
         else if (!x || !y) {
 
-            if (!x) {
+            if (!x) 
                 paramsInvalides.push('x');
-            }
-            if (!y) {
+            
+            if (!y) 
                 paramsInvalides.push('y');
-            }
+            
             this.HttpContext.response.JSON({
                 op: '/',
                 x,
@@ -209,13 +206,12 @@ export default class MathsController extends Controller {
     Modulo(httpContextParams) {
         const { x, y } = httpContextParams;
         let invalidParameters = [];
-        if (!verifierSiNombre(x) || !verifierSiNombre(y) || y === 0) {
-            
-            if (!verifierSiNombre(x)) 
-                invalidParameters.push('x');
-            
-            if (!verifierSiNombre(y) || y === 0) 
-                invalidParameters.push('y');
+        if (typeof x !== 'number' || typeof y !== 'number' || y === 0) {
+            if (typeof x !== 'number')
+                paramsInvalides.push('x');
+
+            if (typeof y !== 'number')
+                paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
                 op: '%',
@@ -268,7 +264,7 @@ export default class MathsController extends Controller {
 
     Premier(httpContextParams) {
         const { n } = httpContextParams;
-        if (!verifierSiNombre(n) || n <= 1)
+        if (typeof n !== 'number' || n <= 1)
             this.HttpContext.response.JSON({
                 op: 'p',
                 n,
@@ -288,7 +284,7 @@ export default class MathsController extends Controller {
 
     EniemPremier(httpContextParams) {
         const { n } = httpContextParams;
-        if (!verifierSiNombre(n) || n <= 0)
+        if (typeof n !== 'number' || n <= 0)
             this.HttpContext.response.JSON({
                 op: 'np',
                 n,
@@ -338,10 +334,5 @@ export default class MathsController extends Controller {
             num++;
         }
         return num - 1;
-    }
-
-    verifierSiNombre(valeur){
-        //Source: https://www.shecodes.io/athena/92427-how-to-check-if-a-value-is-a-number-in-javascript#:~:text=You%20can%20use%20the%20typeof,to%20the%20string%20'number'%20.&text=You%20can%20then%20call%20this,value%20you%20want%20to%20check.
-        return typeof valeur === 'number';
     }
 }
