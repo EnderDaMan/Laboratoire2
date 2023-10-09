@@ -130,9 +130,9 @@ export default class MathsController extends Controller {
 
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
-        
+        let paramsInvalides = [];
         if (Number.isNaN(x) || Number.isNaN(y)) {
-            let paramsInvalides = [];
+            
             if (Number.isNaN(x)) 
                 paramsInvalides.push('x');
             
@@ -147,7 +147,7 @@ export default class MathsController extends Controller {
             });
         } 
         else if (!x || !y) {
-            let paramsInvalides = [];
+            
             if (!x) 
                 paramsInvalides.push('x');
             
@@ -185,12 +185,12 @@ export default class MathsController extends Controller {
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (!x || !y) {
+        else if (httpContextParams.x === null || httpContextParams.y === null) {
 
-            if (!x) 
+            if (httpContextParams.x === null) 
                 paramsInvalides.push('x');
             
-            if (!y) 
+            if (httpContextParams.y === null) 
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
