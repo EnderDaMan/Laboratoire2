@@ -172,12 +172,12 @@ export default class MathsController extends Controller {
         let paramsInvalides = [];
         if (Number.isNaN(x) || Number.isNaN(y)) {
             
-            if (Number.isNaN(x)) 
+            if (Number.isNaN(x)) {
                 paramsInvalides.push('x');
-            
-            if (Number.isNaN(y)) 
+            }
+            if (Number.isNaN(y)) {
                 paramsInvalides.push('y');
-            
+            }
             this.HttpContext.response.JSON({
                 op: '/',
                 x,
@@ -185,14 +185,14 @@ export default class MathsController extends Controller {
                 error: `Paramètre(s) invalide(s): ${paramsInvalides.join(', ')}. Doit être un nombre.`
             });
         } 
-        else if (httpContextParams.x === null || httpContextParams.y === null) {
+        else if (!x || !y) {
 
-            if (httpContextParams.x === null) 
+            if (!x) {
                 paramsInvalides.push('x');
-            
-            if (httpContextParams.y === null) 
+            }
+            if (!y) {
                 paramsInvalides.push('y');
-            
+            }
             this.HttpContext.response.JSON({
                 op: '/',
                 x,
