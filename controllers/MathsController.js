@@ -2,7 +2,7 @@ import Controller from "./Controller.js";
 import {handleStaticResourceRequest} from "../staticResourcesServer.js";
 import HttpContext from "../httpContext.js";
 
-
+//Not a number source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
 export default class MathsController extends Controller {
     constructor(HttpContext, repository = null) {
         super(HttpContext, repository);
@@ -92,11 +92,11 @@ export default class MathsController extends Controller {
     Soustraction(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (typeof x !== 'number' || typeof y !== 'number') {
-            if (typeof x !== 'number')
+        if (isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
                 paramsInvalides.push('x');
 
-            if (typeof y !== 'number')
+            if (isNaN(y))
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -130,11 +130,11 @@ export default class MathsController extends Controller {
     Multiplication(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (typeof x !== 'number' || typeof y !== 'number') {
-            if (typeof x !== 'number')
+        if (isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
                 paramsInvalides.push('x');
 
-            if (typeof y !== 'number')
+            if (isNaN(y))
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -168,11 +168,11 @@ export default class MathsController extends Controller {
     Division(httpContextParams) {
         const { x, y } = httpContextParams;
         let paramsInvalides = [];
-        if (typeof x !== 'number' || typeof y !== 'number') {
-            if (typeof x !== 'number')
+        if (isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
                 paramsInvalides.push('x');
 
-            if (typeof y !== 'number')
+            if (isNaN(y))
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -205,12 +205,12 @@ export default class MathsController extends Controller {
 
     Modulo(httpContextParams) {
         const { x, y } = httpContextParams;
-        let invalidParameters = [];
-        if (typeof x !== 'number' || typeof y !== 'number' || y === 0) {
-            if (typeof x !== 'number')
+        let paramsInvalides = [];
+        if (isNaN(x) || isNaN(y)) {
+            if (isNaN(x))
                 paramsInvalides.push('x');
 
-            if (typeof y !== 'number')
+            if (isNaN(y))
                 paramsInvalides.push('y');
             
             this.HttpContext.response.JSON({
@@ -264,7 +264,7 @@ export default class MathsController extends Controller {
 
     Premier(httpContextParams) {
         const { n } = httpContextParams;
-        if (typeof n !== 'number' || n <= 1)
+        if (isNaN(n) || n <= 1)
             this.HttpContext.response.JSON({
                 op: 'p',
                 n,
@@ -284,7 +284,7 @@ export default class MathsController extends Controller {
 
     EniemPremier(httpContextParams) {
         const { n } = httpContextParams;
-        if (typeof n !== 'number' || n <= 0)
+        if (isNaN(n) || n <= 0)
             this.HttpContext.response.JSON({
                 op: 'np',
                 n,
